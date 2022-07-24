@@ -162,8 +162,6 @@ fn main() {
 "
 )]
 
-extern crate proc_macro;
-
 use chrono::{DateTime, Utc};
 use reqwest::StatusCode;
 

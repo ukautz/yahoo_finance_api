@@ -36,9 +36,9 @@ impl YResponse {
     }
 
     pub fn from_json(json: serde_json::Value) -> Result<YResponse, YahooError> {
-        let s = json.clone();
+        //let s = json.clone();
         serde_json::from_value(json).map_err(|e| {
-            eprintln!(">>>>>> WTF RESPONSE: {:?}", serde_json::to_string(&s));
+            //eprintln!(">>>>>> WTF RESPONSE: {:?}", serde_json::to_string(&s));
             YahooError::DeserializeFailed(format!("YResponse: {}", e))
         })
     }
@@ -134,7 +134,7 @@ pub struct YQuoteBlock {
 #[derive(Deserialize, Debug)]
 #[serde(rename_all = "camelCase")]
 pub struct YMetaData {
-    pub currency: String,
+    pub currency: Option<String>,
     pub symbol: String,
     pub exchange_name: String,
     pub instrument_type: String,
@@ -223,14 +223,8 @@ macro_rules! actual_attribute {
     ($self:ident, $attribs:ident, $attrib:ident, $type:ty) => {
         pub fn $attribs(&self) -> Vec<Option<$type>> {
             match self {
-                $self::Empty(_) => {
-                    eprintln!("having the empty");
-                    vec![]
-                }
-                $self::Actual(actual) => {
-                    eprintln!("having the contents {}", &actual.$attrib.to_owned().len());
-                    actual.$attrib.to_owned()
-                }
+                $self::Empty(_) => vec![],
+                $self::Actual(actual) => actual.$attrib.to_owned(),
             }
         }
 
