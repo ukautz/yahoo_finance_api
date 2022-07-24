@@ -162,6 +162,8 @@ fn main() {
 "
 )]
 
+extern crate proc_macro;
+
 use chrono::{DateTime, Utc};
 use reqwest::StatusCode;
 
@@ -169,8 +171,8 @@ mod quotes;
 mod search_result;
 mod yahoo_error;
 pub use quotes::{
-    AdjClose, PeriodInfo, Quote, QuoteBlock, QuoteList, TradingPeriod, YChart, YMetaData,
-    YQuoteBlock, YResponse, Split, Dividend
+    AdjClose, Dividend, PeriodInfo, Quote, QuoteBlock, QuoteList, Split, TradingPeriod, YChart,
+    YMetaData, YQuoteBlock, YResponse,
 };
 pub use search_result::{YNewsItem, YQuoteItem, YQuoteItemOpt, YSearchResult, YSearchResultOpt};
 pub use yahoo_error::YahooError;

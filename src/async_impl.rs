@@ -215,7 +215,6 @@ mod tests {
         let _ = response.last_quote().unwrap();
     }
 
-    
     #[test]
     fn test_mutual_fund_range() {
         let provider = YahooConnector::new();
@@ -225,5 +224,4 @@ mod tests {
         assert_eq!(&response.chart.result[0].meta.range, "1mo");
         assert_eq!(&response.chart.result[0].meta.data_granularity, "1d");
     }
-
 }

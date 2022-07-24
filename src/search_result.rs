@@ -42,7 +42,10 @@ impl YSearchResultOpt {
     pub fn from_json(json: serde_json::Value) -> Result<YSearchResultOpt, YahooError> {
         match serde_json::from_value(json) {
             Ok(v) => Ok(v),
-            Err(e) => Err(YahooError::DeserializeFailed(e.to_string())),
+            Err(e) => Err(YahooError::DeserializeFailed(format!(
+                "YSearchResult: {}",
+                e
+            ))),
         }
     }
 }
